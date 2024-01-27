@@ -1,0 +1,200 @@
+#include <stdio.h>
+
+#include <string.h>
+int stringLength(char *str)
+{
+
+    const char *ptr = str;
+
+    while (*ptr)
+    {
+        ptr++;
+    }
+
+    return ptr - str;
+}
+int countVowels(const char *str)
+{
+    int count = 0;
+
+    for (int i = 0; str[i] != '\0'; i++)
+    {
+        if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' ||
+            str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U')
+        {
+            count++;
+        }
+    }
+    return count;
+}
+int main()
+{
+    while (1)
+    {
+        int cases, i, j;
+
+        printf("\n1.Show address of each character in string\n");
+        printf("2.Concatenate two strings without using strcat function.\n");
+        printf("3.Concatenate two strings using strcat function.\n");
+        printf("4.Compare two strings\n");
+        printf("5.Calculate length of the string (use pointers)\n");
+        printf("6.Convert all lowercase characters to uppercase\n");
+        printf("7.Convert all uppercase characters to lowercase\n");
+        printf("8.Calculate number of vowels\n");
+        printf("9.Reverse the string\n");
+        printf("Enter the case no 1-10:");
+        scanf("%d", &cases);
+        switch (cases)
+        {
+        case 1:
+        {
+            char str[100];
+            printf("Enter a string: ");
+            scanf("%s", str);
+            for (i = 0; str[i] != '\0'; i++)
+            {
+                printf("Address of %c: %d\n", str[i], &str[i]);
+            }
+        }
+        break;
+
+        case 2:
+        {
+            char str1[100], str2[100];
+            char str3[100];
+            i = 0;
+            j = 0;
+            printf("\nFirst string: ");
+            scanf("%s", &str1);
+            printf("\nSecond string: ");
+            scanf("%s", &str2);
+            for (; str1[i] != '\0'; i++, j++)
+            {
+                str3[j] = str1[i];
+            }
+            i = 0;
+            for (; str2[i] != '\0'; i++, j++)
+            {
+                str3[j] = str2[i];
+            }
+            str3[j] = '\0';
+            printf("\nConcatenated string: %s", str3);
+        }
+        break;
+
+        case 3:
+        {
+            char str1[50];
+            char str2[50];
+            printf("\nFirst string: ");
+            scanf("%s", &str1);
+            printf("\nSecond string: ");
+            scanf("%s", &str2);
+            strcat(str1, str2);
+            printf("Concatenated String: %s\n", str1);
+        }
+        break;
+
+        case 4:
+        {
+            char str1[50];
+            char str2[50];
+            printf("\nFirst string: ");
+            scanf("%s", &str1);
+
+            printf("\nSecond string: ");
+            scanf("%s", &str2);
+
+            int result;
+            result = strcmp(str1, str2);
+
+            if (result == 0)
+            {
+                printf("Both strings are equal.\n");
+            }
+            else if (result < 0)
+            {
+                printf("String 1 is less than String 2.\n");
+            }
+            else
+            {
+                printf("String 1 is greater than String 2.\n");
+            }
+        }
+        break;
+
+        case 5:
+        {
+            char str[50];
+
+            printf("Enter a string: ");
+            scanf("%s", str);
+            int length;
+            length = stringLength(str);
+
+            printf("Length of the string: %d\n", length);
+        }
+        break;
+        case 6:
+        {
+            char str[50];
+            printf("Enter a string: ");
+            scanf("%s", str);
+            for (i = 0; str[i] != '\0'; i++)
+            {
+                if (str[i] >= 'a' && str[i] <= 'z')
+                {
+                    str[i] = str[i] - 'a' + 'A';
+                }
+            }
+
+            printf("Uppercase String: %s\n", str);
+        }
+        break;
+        case 7:
+        {
+            char str[50];
+            printf("Enter a string: ");
+            scanf("%s", str);
+            for (int i = 0; str[i] != '\0'; i++)
+            {
+                if (str[i] >= 'A' && str[i] <= 'Z')
+                {
+                    str[i] = str[i] - 'A' + 'a';
+                }
+            }
+            printf("Lower case String: %s\n", str);
+        }
+        break;
+        case 8:
+        {
+            char str[50];
+            printf("Enter a string: ");
+            scanf("%s", str);
+            int vowelCount;
+            vowelCount = countVowels(str);
+            printf("Number of vowels: %d\n", vowelCount);
+        }
+        break;
+        case 9:
+        {
+            char str[50];
+
+            printf("Enter a string: ");
+            scanf("%s", str);
+            for (i = 0, j = strlen(str) - 1; i < j; i++, j--)
+            {
+                char temp = str[i];
+                str[i] = str[j];
+                str[j] = temp;
+            }
+
+            printf("Reversed String: %s\n", str);
+        }
+        break;
+
+        default:
+            printf("enter a valid case......");
+        }
+    }
+}
