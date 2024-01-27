@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+void main()
+{
+    int a;
+    printf("Enter size of the first array: ");
+    scanf("%d", &a);
+
+    int ar1[a];
+
+    printf("Enter elements for first array:\n");
+    for (int i = 0; i < a; i++)
+    {
+        printf("Element %d: ", i + 1);
+        scanf("%d", &ar1[i]);
+    }
+    int b;
+    printf("Enter size of the second array: ");
+    scanf("%d", &b);
+
+    int ar2[b];
+
+    printf("Enter elements for second array:\n");
+    for (int j = 0; j < b; j++)
+    {
+        printf("Element %d: ", j + 1);
+        scanf("%d", &ar2[j]);
+    }
+    int c = a + b;
+    int ar3[c], i = 0, j = 0, k = 0;
+    while (i < a && j < b)
+    {
+        if (ar1[i] < ar2[j])
+        {
+            ar3[k] = ar1[i];
+            i++;
+        }
+        else
+        {
+            ar3[k] = ar2[j];
+            j++;
+        }
+        k++;
+    }
+   if (i < a)
+    {
+        for (; i < a; i++, k++)
+            ar3[k] = ar1[i];
+    }
+    if (j < b)
+    {
+        for (; j < b; j++, k++)
+            ar3[k] = ar2[j];
+    }
+    
+    printf("\nThe common sorted elements are : \n");
+    for (int l = 0; l < c; l++)
+    {
+        printf("%d\t", ar3[l]);
+    }
+}
