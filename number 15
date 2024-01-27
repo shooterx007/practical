@@ -1,0 +1,22 @@
+#include <stdio.h>
+void swap(int *a,int *b);
+void main() {
+   int a,b;
+printf("enter two numbers:");
+scanf("%d %d",&a,&b);
+printf("before swapping:\n value of a is %d\n  value of  b is %d\n",a,b);
+printf("\n");
+printf("before swapping:\n address of a is %d\n  address of b is %d\n",&a,&b);
+printf("\n");
+swap(&a,&b);
+}
+void swap(int *a,int *b)
+{
+    int temp;
+    temp=*a;
+    *a=*b;
+    *b=temp;
+printf("after swapping:\n value of a is %d\n value of b is %d\n",*a,*b);
+printf("\n");
+printf("after swapping:\n address of a is %d\n  address of b is %d\n",a,b);
+}
