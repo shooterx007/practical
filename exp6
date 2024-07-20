@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <conio.h>
+#define MAX 100
+void displayqueue();
+void enqueue();
+void dequeue();
+int Q[MAX], front = -1, rear = -1;
+void main()
+{
+    int op;
+    char ch = 'y';
+    
+    while (ch == 'y')
+    {
+        printf("1--->DISPLAY QUEUE\n");
+        printf("2--->ENQUEUE\n");
+        printf("3--->DEQUEUE\n");
+        printf("enter operation code[1,2,3]:");
+        scanf("%d", &op);
+        switch (op)
+        {
+        case 1:
+            displayqueue();
+            break;
+        case 2:
+            enqueue();
+            break;
+        case 3:
+            dequeue();
+            break;
+        default:
+            printf("\n wrong operation code");
+        }
+        printf("do you want to continue? press y for continue n for no:");
+        ch = getche();
+    }
+}
+void enqueue()
+{
+    int item;
+    printf("enter the item to be insert into queue:");
+    scanf("%d", &item);
+    if (front == -1 || front > rear)
+    {
+        front = 0;
+        rear = 0;
+    }
+    else if ((rear + 1) % MAX == front)
+    {
+        printf("\n queue is full ! no insertion");
+    }
+    else
+    {
+        rear = (rear + 1) % MAX;
+        Q[rear] = item;
+    }
+}
+void dequeue()
+{
+    int item;
+    if (front == -1 && rear == -1)
+    {
+        printf("\n queue is empty !no deletion");
+    }
+    else if (front == rear)
+    {
+        front = -1;
+        rear = -1;
+    }
+    else
+    {
+        printf("\n %d has been deleted", Q[front]);
+        front = ((front + 1) % MAX);
+    }
+}
+void displayqueue()
+{
+    int i = front;
+    if (front == -1 || front > rear)
+    {
+        printf("\n queue is empty \n");
+    }
+    else
+    {
+        printf("element in queue are :");
+        while (i <= rear)
+        {
+            printf("%d \t", Q[i]);
+            i = ((i + 1) % MAX);
+        }
+    }
+}
